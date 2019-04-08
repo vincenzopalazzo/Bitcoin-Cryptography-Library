@@ -40,8 +40,8 @@ class Utils final {
 		* this is the procedure for create the hash bitcoin protocol.
 		* it's developeing for fix this problem
 		* https://bitcoin.stackexchange.com/questions/85571/create-a-double-sha256-block-and-trandaction
-		* @author @author https://github.com/vincenzopalazzo
-	**/
+		* @author https://github.com/vincenzopalazzo
+		**/
 	public: static vector<unsigned char> ToHexIntoVectorByte(string &hexData);
 
 

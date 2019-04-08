@@ -1,7 +1,7 @@
 /* 
  * Bitcoin cryptography library
  * Copyright (c) Project Nayuki
- * 
+ *
  * https://www.nayuki.io/page/bitcoin-cryptography-library
  * https://github.com/nayuki/Bitcoin-Cryptography-Library
  */
@@ -68,7 +68,7 @@ Sha256Hash Sha256::getDoubleHash(const uint8_t msg[], size_t len) {
 
 Sha256Hash Sha256::getHmac(const uint8_t key[], size_t keyLen, const uint8_t msg[], size_t msgLen) {
 	assert(key != nullptr || keyLen == 0);
-	
+
 	// Preprocess key
 	uint8_t tempKey[BLOCK_LEN] = {};
 	if (keyLen <= BLOCK_LEN)
@@ -77,7 +77,7 @@ Sha256Hash Sha256::getHmac(const uint8_t key[], size_t keyLen, const uint8_t msg
 		const Sha256Hash keyHash = getHash(key, keyLen);
 		std::memcpy(tempKey, keyHash.value, Sha256Hash::HASH_LEN);
 	}
-	
+
 	// Compute inner hash
 	for (int i = 0; i < BLOCK_LEN; i++)
 		tempKey[i] ^= 0x36;
@@ -85,7 +85,7 @@ Sha256Hash Sha256::getHmac(const uint8_t key[], size_t keyLen, const uint8_t msg
 		.append(tempKey, BLOCK_LEN)
 		.append(msg, msgLen)
 		.getHash();
-	
+
 	// Compute outer hash
 	for (int i = 0; i < BLOCK_LEN; i++)
 		tempKey[i] ^= 0x36 ^ 0x5C;
@@ -98,18 +98,18 @@ Sha256Hash Sha256::getHmac(const uint8_t key[], size_t keyLen, const uint8_t msg
 
 void Sha256::compress(uint32_t state[8], const uint8_t block[BLOCK_LEN]) {
 	assert(state != nullptr && block != nullptr);
-	
+
 	// Message schedule
 	uint32_t schedule[NUM_ROUNDS] = {};
 	for (int i = 0; i < 64; i++)
 		schedule[i >> 2] |= static_cast<uint32_t>(block[i]) << ((3 - (i & 3)) << 3);
-	
+
 	for (int i = 16; i < NUM_ROUNDS; i++) {
 		schedule[i] = 0U + schedule[i - 16] + schedule[i - 7]
 			+ (rotr32(schedule[i - 15],  7) ^ rotr32(schedule[i - 15], 18) ^ (schedule[i - 15] >>  3))
 			+ (rotr32(schedule[i -  2], 17) ^ rotr32(schedule[i -  2], 19) ^ (schedule[i -  2] >> 10));
 	}
-	
+
 	// The 64 rounds
 	uint32_t a = state[0];
 	uint32_t b = state[1];

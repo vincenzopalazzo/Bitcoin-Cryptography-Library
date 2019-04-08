@@ -36,20 +36,16 @@ void Utils::storeBigUint32(std::uint32_t x, uint8_t arr[4]) {
 	arr[2] = static_cast<uint8_t>(x >>  8);
 	arr[3] = static_cast<uint8_t>(x >>  0);
 }
-/**
-	* @author https://github.com/vincenzopalazzo	
-**/
-vector<unsigned char> spyCBlock::UtilCrypto::ToHexIntoVectorByte(string &hexData)
-{
-  LOG(INFO) << "The array Hex is: " << hexData;
 
+/**
+	* @author https://github.com/vincenzopalazzo
+	*/
+vector<unsigned char> ToHexIntoVectorByte(string &hexData){
   vector<unsigned char> *bytes = new vector<unsigned char>();
-  for(unsigned i = 0; i < hexData.length(); i += 2)
-  {
+  for(unsigned i = 0; i < hexData.length(); i += 2){
       string byteSubString = hexData.substr(i, 2);
       unsigned char byte = (unsigned char)strtol(byteSubString.c_str(), NULL, 16);
       bytes->push_back(byte);
-
   }
   return *bytes;
 }
