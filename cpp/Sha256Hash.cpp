@@ -10,6 +10,8 @@
 #include <cstring>
 #include <string>
 #include <sstream>
+#include <iomanip>
+#include <algorithm>
 #include "Sha256Hash.hpp"
 #include "Utils.hpp"
 

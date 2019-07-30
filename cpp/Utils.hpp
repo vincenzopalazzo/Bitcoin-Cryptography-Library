@@ -12,6 +12,7 @@
 #include <cstdint>
 #include <algorithm>
 #include <vector>
+#include <string>
 
 
 /*
@@ -35,14 +36,13 @@ class Utils final {
 	// The function is not helpful for code that calls memcpy/memmove with a known positive constant count value.
 	public: static void copyBytes(void *dest, const void *src, std::size_t count);
 
-	/**
-		* This method conver the string or the string c into vector original bytes
-		* this is the procedure for create the hash bitcoin protocol.
-		* it's developeing for fix this problem
-		* https://bitcoin.stackexchange.com/questions/85571/create-a-double-sha256-block-and-trandaction
-		* @author https://github.com/vincenzopalazzo
-		**/
-	public: static vector<unsigned char> ToHexIntoVectorByte(string &hexData);
+
+	// This method conver the string or the string c into vector original bytes
+	// this is the procedure for create the hash bitcoin protocol.
+	// it's developeing for fix this problem
+	// https://bitcoin.stackexchange.com/questions/85571/create-a-double-sha256-block-and-trandaction
+	// @author https://github.com/vincenzopalazzo
+    public: static std::vector<unsigned char> ToHexIntoVectorByte(std::string &hexData);
 
 
 	public: static void storeBigUint32(std::uint32_t x, std::uint8_t arr[4]);
