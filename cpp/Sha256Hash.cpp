@@ -46,10 +46,9 @@ bool Sha256Hash::operator!=(const Sha256Hash &other) const {
 	return !(*this == other);
 }
 
-/**
-  * Thanks for https://www.reddit.com/r/cpp_questions/comments/b4lvgl/convert_unit8_t_32_to_string/
-  * @author https://github.com/vincenzopalazzo
-*/
+
+// Thanks for https://www.reddit.com/r/cpp_questions/comments/b4lvgl/convert_unit8_t_32_to_string/
+// @author https://github.com/vincenzopalazzo
 std::string Sha256Hash::ToString(){
   std::string hashResult;
   std::stringstream stream;
@@ -61,10 +60,10 @@ std::string Sha256Hash::ToString(){
   return hashResult;
 }
 
-/**
-  * This methods convertion hash into string for regule bitcoin protocol
-  * @author https://github.com/vincenzopalazzo
-	*/
+
+// This methods convertion hash into string for conversion into big endian
+// The hash result is in little endian
+// @author https://github.com/vincenzopalazzo
 std::string Sha256Hash::ToStringForProtocol(){
   //reverse array hash calculate
   uint8_t clone_has_raw[HASH_LEN];

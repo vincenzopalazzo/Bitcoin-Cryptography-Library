@@ -53,16 +53,15 @@ class Sha256Hash final {
 	// Tests whether the given hash is unequal to this one. Constant-time with respect to both values.
 	public: bool operator!=(const Sha256Hash &other) const;
 
-	/**
-   * Convert the hash calculate in to string
-   * @author https://github.com/vincenzopalazzo
-  **/
+
+   	// Convert the hash calculate in to string
+	// The hash result is in little endian
+    // @author https://github.com/vincenzopalazzo
 	public: std::string ToString();
 
-	/**
-		* Convert the hash calculate in to string for regule bitcoin protocol
-		* @author https://github.com/vincenzopalazzo
-	**/
+	// Convert the hash calculate in to string with conversion
+	// into big endiand
+	// @author https://github.com/vincenzopalazzo
 	public: std::string ToStringForProtocol();
 
 };
